@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sarenur's Magical Birthday</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+
+<style>
+/* Background Flicker */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('IMG_5402.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { filter: brightness(0.9); }
+  50% { filter: brightness(1.1); }
+  100% { filter: brightness(0.95); }
+}
+
+/* Glowing Title */
+.hp-title {
+  font-family: 'Cinzel', serif;
+  color: #f7e98e;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 3rem;
+  text-shadow:
+    0 0 10px #f7e98e,
+    0 0 20px #d4b100,
+    0 0 40px #b38f00,
+    0 0 80px #8a6b00;
+  animation: hpGlow 2s infinite alternate;
+}
+
+@keyframes hpGlow {
+  from { text-shadow: 0 0 10px #f7e98e; }
+  to { text-shadow: 0 0 40px #ffdf00; }
+}
+
+/* Parchment Box */
+.parchment {
+  background: rgba(243, 229, 192, 0.9);
+  width: 80%;
+  margin: 40px auto;
+  padding: 25px;
+  border: 2px solid #b38f00;
+  border-radius: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  color: #3b2f1e;
+  font-size: 1.5rem;
+  box-shadow: 0 0 20px #000;
+}
+
+/* Magic Button */
+.hp-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 15px 30px;
+  background: #3b2f1e;
+  color: #f7e98e;
+  border: 2px solid #d4b100;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #d4b100;
+  transition: 0.3s;
+}
+
+.hp-btn:hover {
+  box-shadow: 0 0 20px #ffdf00;
+  transform: scale(1.05);
+}
+
+/* Floating Magic Sparks */
+.magic-dust {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffd700;
+  border-radius: 50%;
+  animation: rise 4s linear infinite;
+}
+
+@keyframes rise {
+  from { transform: translateY(100vh) scale(0.5); opacity: 1; }
+  to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="hp-title">Happy Birthday, Sarenur ✨</h1>
+
+<div class="parchment">
+  My dearest Sarenur,<br><br>
+  You are the magic Hogwarts forgot to teach.  
+  Every moment with you feels like a spell — warm, bright, and unforgettable.  
+  Today, the whole wizarding world celebrates you.  
+  ✨🪄
+</div>
+
+<button class="hp-btn" onclick="playMusic()">Play Music 🎵</button>
+
+<audio id="song" loop>
+  <source src="Happy%20Birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div class="magic-dust"></div>
+
+<script>
+// Play Music
+function playMusic() {
+  const song = document.getElementById("song");
+  song.play();
+}
+
+// Floating Sparks
+setInterval(() => {
+  const s = document.createElement("div");
+  s.classList.add("spark");
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  document.querySelector(".magic-dust").appendChild(s);
+  setTimeout(() => s.remove(), 4000);
+}, 200);
+</script>
+
+</body>
+</html>
