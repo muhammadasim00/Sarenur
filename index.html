@@ -4,63 +4,68 @@
 <meta charset="UTF-8">
 <title>Sarenur's Magical Birthday</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
 <style>
-/* Background Flicker */
 body {
   margin: 0;
   padding: 0;
-  background: url('IMG_5402.jpeg') no-repeat center center fixed;
-  background-size: cover;
-  animation: flicker 3s infinite alternate;
+  background: radial-gradient(circle at top, #0b0c10 0%, #1f2833 100%);
+  color: #f7e98e;
+  overflow: hidden;
+  font-family: 'Cormorant Garamond', serif;
 }
 
-@keyframes flicker {
-  0% { filter: brightness(0.9); }
-  50% { filter: brightness(1.1); }
-  100% { filter: brightness(0.95); }
+/* Floating stars */
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffd700;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* Glowing Title */
+/* Title glow */
 .hp-title {
   font-family: 'Cinzel', serif;
-  color: #f7e98e;
   text-align: center;
-  margin-top: 40px;
   font-size: 3rem;
-  text-shadow:
-    0 0 10px #f7e98e,
-    0 0 20px #d4b100,
-    0 0 40px #b38f00,
-    0 0 80px #8a6b00;
-  animation: hpGlow 2s infinite alternate;
+  margin-top: 60px;
+  text-shadow: 0 0 20px #f7e98e, 0 0 40px #d4b100, 0 0 80px #b38f00;
+  animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 20px #f7e98e; }
+  to { text-shadow: 0 0 60px #ffdf00; }
 }
 
-@keyframes hpGlow {
-  from { text-shadow: 0 0 10px #f7e98e; }
-  to { text-shadow: 0 0 40px #ffdf00; }
-}
-
-/* Parchment Box */
+/* Floating parchment */
 .parchment {
   background: rgba(243, 229, 192, 0.9);
-  width: 80%;
+  width: 70%;
   margin: 40px auto;
   padding: 25px;
   border: 2px solid #b38f00;
   border-radius: 10px;
-  font-family: 'Cormorant Garamond', serif;
   color: #3b2f1e;
-  font-size: 1.5rem;
-  box-shadow: 0 0 20px #000;
+  font-size: 1.4rem;
+  box-shadow: 0 0 30px #000;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Magic Button */
+/* Button magic */
 .hp-btn {
   display: block;
-  margin: 20px auto;
+  margin: 30px auto;
   padding: 15px 30px;
   background: #3b2f1e;
   color: #f7e98e;
@@ -71,74 +76,68 @@ body {
   box-shadow: 0 0 10px #d4b100;
   transition: 0.3s;
 }
-
 .hp-btn:hover {
-  box-shadow: 0 0 20px #ffdf00;
-  transform: scale(1.05);
+  box-shadow: 0 0 25px #ffdf00;
+  transform: scale(1.1);
 }
 
-/* Floating Magic Sparks */
-.magic-dust {
+/* Wand trail */
+.wand-trail {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.spark {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #ffd700;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
   border-radius: 50%;
-  animation: rise 4s linear infinite;
+  pointer-events: none;
+  animation: fadeTrail 1s forwards;
 }
-
-@keyframes rise {
-  from { transform: translateY(100vh) scale(0.5); opacity: 1; }
-  to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+@keyframes fadeTrail {
+  to { opacity: 0; transform: scale(2); }
 }
 </style>
 </head>
 
 <body>
-
-<h1 class="hp-title">Happy Birthday, Sarenur ✨</h1>
+<h1 class="hp-title">✨ Happy Birthday, Sarenur ✨</h1>
 
 <div class="parchment">
   My dearest Sarenur,<br><br>
   You are the magic Hogwarts forgot to teach.  
   Every moment with you feels like a spell — warm, bright, and unforgettable.  
-  Today, the whole wizarding world celebrates you.  
-  ✨🪄
+  Today, the whole wizarding world celebrates you. ✨🪄
 </div>
 
 <button class="hp-btn" onclick="playMusic()">Play Music 🎵</button>
 
 <audio id="song" loop>
-  <source src="Happy%20Birthday.mp3" type="audio/mpeg">
+  <source src="Birthday.mp3" type="audio/mpeg">
 </audio>
 
-<div class="magic-dust"></div>
-
 <script>
-// Play Music
+// Music play
 function playMusic() {
-  const song = document.getElementById("song");
-  song.play();
+  document.getElementById("song").play();
 }
 
-// Floating Sparks
-setInterval(() => {
-  const s = document.createElement("div");
-  s.classList.add("spark");
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.animationDuration = (Math.random() * 3 + 2) + "s";
-  document.querySelector(".magic-dust").appendChild(s);
-  setTimeout(() => s.remove(), 4000);
-}, 200);
-</script>
+// Wand trail effect
+document.addEventListener("mousemove", e => {
+  const trail = document.createElement("div");
+  trail.classList.add("wand-trail");
+  trail.style.left = e.pageX + "px";
+  trail.style.top = e.pageY + "px";
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 1000);
+});
 
+// Random stars
+for (let i = 0; i < 80; i++) {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  document.body.appendChild(star);
+}
+</script>
 </body>
 </html>
