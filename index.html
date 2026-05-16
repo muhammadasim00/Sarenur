@@ -126,7 +126,28 @@ function playMusic() {
 function openGallery() {
   window.open("gallery.html", "_blank");
 }
+
+// Wand trail effect
+document.addEventListener("mousemove", e => {
+  const trail = document.createElement("div");
+  trail.classList.add("wand-trail");
+  trail.style.left = e.pageX + "px";
+  trail.style.top = e.pageY + "px";
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 1000);
+});
+
+// Random stars
+for (let i = 0; i < 80; i++) {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  document.body.appendChild(star);
+}
 </script>
+
 
 // Wand trail effect
 document.addEventListener("mousemove", e => {
