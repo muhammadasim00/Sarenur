@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Magical Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000 100%);
+  color: #f7e98e;
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  margin-top: 30px;
+  text-shadow: 0 0 20px #f7e98e, 0 0 40px #d4b100;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.gallery img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin: 15px;
+  border: 3px solid #d4b100;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #ffdf00;
+}
+</style>
+</head>
+
+<body>
+<h1>✨ Your Magical Memories ✨</h1>
+
+<div class="gallery">
+  <img src="IMG_5402.jpeg" alt="Memory 1">
+  <img src="IMG_5403.jpeg" alt="Memory 2">
+  <img src="IMG_5404.jpeg" alt="Memory 3">
+</div>
+
+</body>
+</html>
