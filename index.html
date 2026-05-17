@@ -150,13 +150,24 @@ body::after {
 </div>
 
 <button class="hp-btn" onclick="playMusic()">Play Music 🎵</button>
-<button class="hp-btn" onclick="openGallery()">Reveal Surprise 🎁</button>
+<button class="hp-btn" onclick="openGallery()">Reveal🎁</button>
+<button class="hp-btn" onclick="openHogwarts()">Hogwarts Gallery 🏰</button>
+<button class="hp-btn" onclick="openMemories()">Memories 📚</button>
+
 
 <audio id="song" loop>
   <source src="harrypoter.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
+function openHogwarts() {
+  window.open("hogwarts.html", "_blank");
+}
+
+function openMemories() {
+  window.open("memories.html", "_blank");
+}
 
 // Music play
 function playMusic() {
