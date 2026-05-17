@@ -12,14 +12,16 @@
 body {
   margin: 0;
   padding: 0;
-  background: url('Copilot_20260516_192935.jpg') no-repeat center center fixed;
+  background: url('Copilot_20260516_192935.jpg') no-repeat center center;
   background-size: cover;
+  background-attachment: scroll; /* FIX for mobile */
   color: #f7e98e;
   overflow: hidden;
   font-family: 'Cormorant Garamond', serif;
   position: relative;
   z-index: 0;
 }
+
 
 /* Floating stars */
 .star {
@@ -142,6 +144,9 @@ body::after {
 
   body {
     padding: 10px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
   }
 
   .hp-title {
@@ -161,6 +166,7 @@ body::after {
     padding: 12px;
     margin-bottom: 10px;
   }
+}
 
   #finalImage {
     width: 100%;
