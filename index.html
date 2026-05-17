@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
 <style>
+
 body {
   margin: 0;
   padding: 0;
@@ -257,16 +258,7 @@ window.addEventListener("load", function () {
 
 // Reveal Surprise → Play video → Show final image
 function openGallery() {
-  const video = document.getElementById("owlVideo");
-  const finalImage = document.getElementById("finalImage");
-
-  video.style.display = "block";
-  video.play();
-
-  video.onended = function() {
-    video.style.display = "none";
-    finalImage.style.display = "block";
-  };
+  window.location.href = "reveal.html";
 }
 
 // Wand trail for desktop (mouse)
