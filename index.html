@@ -136,23 +136,24 @@ body::after {
   z-index: 2;
 }
 
-.owl {
+.owl2 {
   position: fixed;
-  top: 20%;
-  left: -150px;
-  width: 140px;
+  top: 25%;
+  left: -200px;
+  width: 160px;
   z-index: 6;
-  animation: flyAcross 12s linear infinite;
+  animation: flyAcross 14s linear infinite;
   filter: drop-shadow(0 0 10px #f7e98e);
 }
 
 @keyframes flyAcross {
-  0% { left: -150px; transform: scale(1) rotate(0deg); opacity: 0; }
+  0% { left: -200px; opacity: 0; transform: scale(1) rotate(0deg); }
   10% { opacity: 1; }
-  50% { transform: scale(1.1) rotate(5deg); }
+  50% { transform: scale(1.05) rotate(3deg); }
   90% { opacity: 1; }
-  100% { left: 110%; transform: scale(1) rotate(-5deg); opacity: 0; }
+  100% { left: 110%; opacity: 0; transform: scale(1) rotate(-3deg); }
 }
+
 
 </style>
 </head>
@@ -205,6 +206,6 @@ for (let i = 0; i < 80; i++) {
   document.body.appendChild(star);
 }
 </script>
-<img src="owl.png" class="owl" alt="Flying Owl">
+<img src="owl2.gif" class="owl2" alt="Flying Owl2">
 </body>
 </html>
