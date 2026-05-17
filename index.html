@@ -15,6 +15,8 @@ body {
   color: #f7e98e;
   overflow: hidden;
   font-family: 'Cormorant Garamond', serif;
+  position: relative;
+  z-index: 0;
 }
 
 /* Floating stars */
@@ -26,6 +28,7 @@ body {
   box-shadow: 0 0 6px #cfd9ff;
   border-radius: 70%;
   animation: twinkle 2s infinite ease-in-out;
+  z-index: 3;
 }
 @keyframes twinkle {
   0%, 100% { opacity: 0.2; transform: scale(0.8); }
@@ -61,12 +64,12 @@ body {
   font-size: 1.4rem;
   box-shadow: 0 0 40px rgba(0,0,0,0.6);
   animation: float 6s ease-in-out infinite;
+  z-index: 4;
+  position: relative;
 }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
-  .candle {
-  animation: candleFloat 6s ease-in-out infinite;
 }
 
 /* Button magic */
@@ -82,6 +85,8 @@ body {
   cursor: pointer;
   box-shadow: 0 0 10px #d4b100;
   transition: 0.3s;
+  z-index: 4;
+  position: relative;
 }
 .hp-btn:hover {
   background: #d4b100;
@@ -99,11 +104,13 @@ body {
   border-radius: 55%;
   pointer-events: none;
   animation: fadeTrail 2s forwards;
+  z-index: 4;
 }
 @keyframes fadeTrail {
   to { opacity: 0; transform: scale(2); }
 }
 
+/* Dark vignette overlay */
 body::before {
   content: "";
   position: fixed;
@@ -112,9 +119,21 @@ body::before {
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
-  z-index: 0;
+  z-index: 1;
 }
 
+/* Fog overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('fog_texture.png') repeat;
+  opacity: 0.15;
+  z-index: 2;
+}
 </style>
 </head>
 
@@ -129,9 +148,7 @@ body::before {
 </div>
 
 <button class="hp-btn" onclick="playMusic()">Play Music 🎵</button>
-
 <button class="hp-btn" onclick="openGallery()">Reveal Surprise 🎁</button>
-
 
 <audio id="song" loop>
   <source src="harrypoter.mp3" type="audio/mpeg">
@@ -143,12 +160,12 @@ function playMusic() {
   document.getElementById("song").play();
 }
 
-// Open gallery in new window
+// Open gallery
 function openGallery() {
   window.open("gallery.html", "_blank");
 }
 
-// Wand trail effect
+// Wand trail
 document.addEventListener("mousemove", e => {
   const trail = document.createElement("div");
   trail.classList.add("wand-trail");
@@ -158,28 +175,7 @@ document.addEventListener("mousemove", e => {
   setTimeout(() => trail.remove(), 1000);
 });
 
-// Random stars
-for (let i = 0; i < 80; i++) {
-  const star = document.createElement("div");
-  star.classList.add("star");
-  star.style.left = Math.random() * 100 + "vw";
-  star.style.top = Math.random() * 100 + "vh";
-  star.style.animationDelay = Math.random() * 3 + "s";
-  document.body.appendChild(star);
-}
-
-
-// Wand trail effect
-document.addEventListener("mousemove", e => {
-  const trail = document.createElement("div");
-  trail.classList.add("wand-trail");
-  trail.style.left = e.pageX + "px";
-  trail.style.top = e.pageY + "px";
-  document.body.appendChild(trail);
-  setTimeout(() => trail.remove(), 1000);
-});
-
-// Random stars
+// Stars
 for (let i = 0; i < 80; i++) {
   const star = document.createElement("div");
   star.classList.add("star");
@@ -189,5 +185,6 @@ for (let i = 0; i < 80; i++) {
   document.body.appendChild(star);
 }
 </script>
+
 </body>
 </html>
