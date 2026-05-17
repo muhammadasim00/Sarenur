@@ -263,12 +263,23 @@ function openGallery() {
   };
 }
 
-// Wand trail
+// Wand trail for desktop (mouse)
 document.addEventListener("mousemove", e => {
   const trail = document.createElement("div");
   trail.classList.add("wand-trail");
   trail.style.left = e.pageX + "px";
   trail.style.top = e.pageY + "px";
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 1000);
+});
+
+// Wand trail for mobile (touch)
+document.addEventListener("touchmove", e => {
+  const touch = e.touches[0];
+  const trail = document.createElement("div");
+  trail.classList.add("wand-trail");
+  trail.style.left = touch.pageX + "px";
+  trail.style.top = touch.pageY + "px";
   document.body.appendChild(trail);
   setTimeout(() => trail.remove(), 1000);
 });
