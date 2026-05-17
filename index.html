@@ -149,7 +149,7 @@ body::after {
   Today, the whole wizarding world celebrates you. ✨🪄
 </div>
 
-<button class="hp-btn" onclick="playMusic()">Play Music 🎵</button>
+<!-- <button class="hp-btn" onclick="playMusic()">Play Music 🎵</button> -->
 <button class="hp-btn" onclick="openGallery()">Reveal🎁</button>
 <button class="hp-btn" onclick="openHogwarts()">Hogwarts Gallery 🏰</button>
 <button class="hp-btn" onclick="openMemories()">Memories 📚</button>
@@ -170,9 +170,22 @@ function openMemories() {
 }
 
 // Music play
-function playMusic() {
-  document.getElementById("song").play();
-}
+window.addEventListener("load", function () {
+  const song = document.getElementById("song");
+  song.volume = 1.0;
+
+  // Try autoplay
+  const playPromise = song.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // If autoplay is blocked, unmute on first click anywhere
+      document.body.addEventListener("click", () => {
+        song.play();
+      }, { once: true });
+    });
+  }
+});
 
 // Reveal Surprise → Play video → Show final image
 function openGallery() {
@@ -210,6 +223,9 @@ for (let i = 0; i < 80; i++) {
 
 </script>
 
+<audio id="song" loop>
+<source src="harrypoter.mp3" type="audio/mpeg">
+</audio>
 
 <video id="owlVideo" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:9999;" autoplay>
   <source src="owl.mp4" type="video/mp4">
